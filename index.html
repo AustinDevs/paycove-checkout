@@ -66,7 +66,7 @@
     const name = document.getElementById('full-name').value;
     const email = document.getElementById('email').value;
     const items = document.querySelectorAll('.cart-item');
-    let url = 'https://feature.paycove.io/checkout?contact[name]=' + encodeURIComponent(name) + '&contact[email]=' + encodeURIComponent(email) + '&account_id=e3e742f36fb750a0151631184000807d&type=invoice';
+    let url = 'https://ecommerce.paycove.io/checkout?contact[name]=' + encodeURIComponent(name) + '&contact[email]=' + encodeURIComponent(email) + '&account_id=4ed8191f5a087c037a54205f03b5239a&type=invoice';
 
     items.forEach((item, index) => {
       const itemName = item.children[0].textContent;
