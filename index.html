@@ -68,19 +68,45 @@
     const name = document.getElementById('full-name').value;
     const email = document.getElementById('email').value;
     const items = document.querySelectorAll('.cart-item');
-    let url = 'https://local.paycove.io/checkout?contact[name]=' + encodeURIComponent(name) + '&contact[email]=' + encodeURIComponent(email) + '&account_id=e3e742f36fb750a0151631184000807d&type=invoice';
+    const body = {
+      line_items: [],
+      contact: {
+        name,
+        email
+      },
+      type: 'invoice',
+      success_url: `${window.location.origin}/paycove-checkout/thanks.html`,
+      cancel_url: `${window.location.origin}/paycove-checkout/`,
+      failure_url: `${window.location.origin}/paycove-checkout/`
+    };
+    let url = 'http://paycove.test/api/checkout/e3e742f36fb750a0151631184000807d';
 
     items.forEach((item, index) => {
       const itemName = item.children[0].textContent;
       const itemPrice = item.children[1].textContent.replace('$', '');
-      url += `&line_items[${index}][name]=${encodeURIComponent(itemName)}&line_items[${index}][price]=${encodeURIComponent(itemPrice)}&line_items[${index}][quantity]=1`;
+      body.line_items.push({
+        name: itemName,
+        price: itemPrice,
+        quantity: 1
+      });
     });
 
-    url += '&name=Checkout Deal&redirect_url=https%3A%2F%2Faustindevs.github.io/paycove-checkout/thanks.html';
-
-    return url;
+    return { url, body };
   }
-  [...document.querySelectorAll('input')].forEach(el => el.addEventListener('change', () => document.querySelector('code').innerText = buildUrl()));
-  document.querySelector('.checkout button').addEventListener('click', () => window.location.href = buildUrl());
+  [...document.querySelectorAll('input')].forEach(el => el.addEventListener('keyup', () => document.querySelector('code').innerText = `
+POST ${buildUrl().url}
+${JSON.stringify(buildUrl().body, null, 2)}
+`));
+  document.querySelector('.checkout button').addEventListener('click', async () => {
+    const { url, body } = buildUrl();
+    const { checkout_url } = await (await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    })).json();
+    window.location.href = checkout_url;
+  });
 </script>
 </html>
