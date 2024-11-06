@@ -77,6 +77,8 @@
     });
 
     url += '&name=Checkout Deal&redirect_url=https%3A%2F%2Faustindevs.github.io/paycove-checkout/thanks.html';
+
+    return url;
   }
   [...document.querySelectorAll('input')].forEach(el => el.addEventListener('change', () => document.querySelector('code').innerText = buildUrl));
   document.querySelector('.checkout button').addEventListener('click', () => window.location.href = buildUrl());
