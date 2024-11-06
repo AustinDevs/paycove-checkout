@@ -80,7 +80,7 @@
 
     return url;
   }
-  [...document.querySelectorAll('input')].forEach(el => el.addEventListener('change', () => document.querySelector('code').innerText = buildUrl));
+  [...document.querySelectorAll('input')].forEach(el => el.addEventListener('change', () => document.querySelector('code').innerText = buildUrl()));
   document.querySelector('.checkout button').addEventListener('click', () => window.location.href = buildUrl());
 </script>
 </html>
