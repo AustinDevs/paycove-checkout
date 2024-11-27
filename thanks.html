@@ -10,11 +10,13 @@
   <p>Your deal has been processed successfully.</p>
   <p>Deal ID: <span id="dealId"></span></p>
   <p>Unique Deal ID: <a id="uniqueDealIdLink" href="#"></a></p>
+  <p>Key: <span id="key"></span></p>
 
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const dealId = urlParams.get('deal_id');
     const uniqueDealId = urlParams.get('unique_deal_id');
+    const key = urlParams.get('key');
 
     if (dealId) {
       const dealIdLink = document.getElementById('dealId');
@@ -23,8 +25,13 @@
 
     if (uniqueDealId) {
       const uniqueDealIdLink = document.getElementById('uniqueDealIdLink');
-      uniqueDealIdLink.href = `https://local.paycove.io/checkout/${uniqueDealId}`;
+      uniqueDealIdLink.href = `${window.location.hostname.includes('austindevs') ? 'https://local.paycove.io' : 'http://paycove.test'}/checkout/${uniqueDealId}`;
       uniqueDealIdLink.textContent = uniqueDealId;
+    }
+
+    if (key) {
+      const keyLink = document.getElementById('key');
+      keyLink.textContent = key;
     }
   </script>
 </body>

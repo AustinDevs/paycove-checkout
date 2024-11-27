@@ -10,10 +10,8 @@
     }
     .cart {
       width: 50%;
+      min-width: 576px;
       margin: 0 auto;
-      border: 1px solid #ccc;
-      padding: 20px;
-      border-radius: 5px;
     }
     .cart-item {
       display: flex;
@@ -139,12 +137,10 @@ const json = {
   },
   "type": "invoice",
   "template_id": 1,
-  "subtotal": 650,
   "fees": [
     { "label": "Tax", "amount": null, "percent": 10 },
     { "label": "Shipping", "amount": 23, "percent": null }
   ],
-  "total": 650,
   "success_url": `${window.location.origin}/${window.location.hostname.includes('austindevs') ? 'paycove-checkout/' : ''}thanks.html`,
   "cancel_url": `${window.location.origin}/${window.location.hostname.includes('austindevs') ? 'paycove-checkout/' : ''}`,
   "failure_url": `${window.location.origin}/${window.location.hostname.includes('austindevs') ? 'paycove-checkout/' : ''}`,
