@@ -36,9 +36,9 @@
 </head>
 <body>
   <div class="cart">
-    <h2>Shopping Cart</h2>
+    <!-- <h2>Shopping Cart</h2>
     <div class="user-info">
-      <label for="full-name">Full Name:</label>
+      <label for="full-name">First Name:</label>
       <input type="text" id="full-name" name="full-name" required>
       <br>
       <label for="email">Email:</label>
@@ -55,58 +55,270 @@
     <div class="cart-item">
       <span>Item 3</span>
       <span>$20.00</span>
-    </div>
+    </div> -->
     <div class="checkout">
-      <button>Checkout</button>
+      <button>Generate Checkout Session</button>
+      <br><br>
+      <a href="" id="view-checkout"></a>
+      <br><br>
+      <div style="text-align: left;"><pre><code></code></pre></div>
     </div>
   </div>
-  <br><br>
-  <div><pre><code></code></pre></div>
 </body>
 <script>
-  const buildUrl = () => {
-    const name = document.getElementById('full-name').value;
-    const email = document.getElementById('email').value;
-    const items = document.querySelectorAll('.cart-item');
-    const body = {
-      line_items: [],
-      contact: {
-        name,
-        email
-      },
-      type: 'invoice',
-      success_url: `${window.location.origin}/paycove-checkout/thanks.html`,
-      cancel_url: `${window.location.origin}/paycove-checkout/`,
-      failure_url: `${window.location.origin}/paycove-checkout/`
-    };
-    let url = 'https://local.paycove.io/api/checkout/e3e742f36fb750a0151631184000807d';
+  // const buildUrl = () => {
+  //   const name = document.getElementById('full-name').value;
+  //   const email = document.getElementById('email').value;
+  //   const items = document.querySelectorAll('.cart-item');
+  //   const body = {
+  //     line_items: [],
+  //     contact: {
+  //       name,
+  //       email
+  //     },
+  //     type: 'invoice',
+  //     success_url: `${window.location.origin}/paycove-checkout/thanks.html`,
+  //     cancel_url: `${window.location.origin}/paycove-checkout/`,
+  //     failure_url: `${window.location.origin}/paycove-checkout/`
+  //   };
 
-    items.forEach((item, index) => {
-      const itemName = item.children[0].textContent;
-      const itemPrice = item.children[1].textContent.replace('$', '');
-      body.line_items.push({
-        name: itemName,
-        price: itemPrice,
-        quantity: 1
-      });
-    });
+  //   let url;
 
-    return { url, body };
-  }
-  [...document.querySelectorAll('input')].forEach(el => el.addEventListener('keyup', () => document.querySelector('code').innerText = `
-POST ${buildUrl().url}
-${JSON.stringify(buildUrl().body, null, 2)}
-`));
+  //   if (window.location.hostname.includes('austindevs')) {
+  //     url = 'https://local.paycove.io/api/checkout/e3e742f36fb750a0151631184000807d';
+  //   } else {
+  //     url = 'http://paycove.test/api/checkout/e09c6c903778fe789360ef6aeaebb95d';
+  //   }
+
+  //   items.forEach((item, index) => {
+  //     const itemName = item.children[0].textContent;
+  //     const itemPrice = item.children[1].textContent.replace('$', '');
+  //     body.line_items.push({
+  //       name: itemName,
+  //       price: itemPrice,
+  //       quantity: 1
+  //     });
+  //   });
+
+  //   return { url, body };
+  // }
+  let url;
+    if (window.location.hostname.includes('austindevs')) {
+      url = 'https://local.paycove.io/api/checkout/e3e742f36fb750a0151631184000807d';
+    } else {
+      url = 'http://paycove.test/api/checkout/e09c6c903778fe789360ef6aeaebb95d';
+    }
+//   [...document.querySelectorAll('input')].forEach(el => el.addEventListener('keyup', () => document.querySelector('code').innerText = `
+// POST ${buildUrl().url}
+// ${JSON.stringify(buildUrl().body, null, 2)}
+// `));
+
+const json = {
+  "order_id": 210,
+  "key": "wc_order_FLOkR37JNL1Pw",
+  "line_items": [
+    {
+      "name": "Leather-Clad Leisure Chair",
+      "price": 570,
+      "quantity": 1,
+      "thumbnail": "https://placehold.co/100x100",
+      "description": "A comfortable chair for lounging around"
+    }
+  ],
+  "contact": {
+    "name": "First Last",
+    "email": "test@email.com",
+    "first_name": "First",
+    "last_name": "Last",
+    "phone": "+15555555555",
+    "line1": "123 Main St",
+    "city": "Fitchburg",
+    "state": "WI",
+    "postal_code": "53711",
+    "country": "US",
+  },
+  "type": "invoice",
+  "template_id": 1,
+  "subtotal": 650,
+  "fees": [
+    { "label": "Tax", "amount": null, "percent": 10 },
+    { "label": "Shipping", "amount": 23, "percent": null }
+  ],
+  "total": 650,
+  "success_url": `${window.location.origin}/${window.location.hostname.includes('austindevs') ? 'paycove-checkout/' : 'thanks.html'}`,
+  "cancel_url": `${window.location.origin}/${window.location.hostname.includes('austindevs') ? 'paycove-checkout/' : ''}`,
+  "failure_url": `${window.location.origin}/${window.location.hostname.includes('austindevs') ? 'paycove-checkout/' : ''}`,
+  "payment_options": [
+    {
+      "label": "Pay in Full",
+      "description": "Pay in full now",
+      "scheduled_payments": [
+        {
+          "due": "2024-11-20",
+          "value": 650.00,
+          "payable": 1,
+          "auto_charge": 1,
+          "has_details": 0
+        }
+      ],
+    },
+    {
+      "label": "6 Month Plan",
+      "description": "Pay over 6 months",
+      "scheduled_payments": [
+        {
+          "due": "2024-11-20",
+          "value": 100,
+          "payable": 1,
+          "auto_charge": 1,
+          "has_details": 0
+        },
+        {
+          "due": "2024-12-20",
+          "value": 130,
+          "payable": 1,
+          "auto_charge": 1,
+          "has_details": 0
+        },
+        {
+          "due": "2025-01-20",
+          "value": 130,
+          "payable": 1,
+          "auto_charge": 1,
+          "has_details": 0
+        },
+        {
+          "due": "2025-02-20",
+          "value": 130,
+          "payable": 1,
+          "auto_charge": 1,
+          "has_details": 0
+        },
+        {
+          "due": "2025-03-20",
+          "value": 130,
+          "payable": 1,
+          "auto_charge": 1,
+          "has_details": 0
+        },
+        {
+          "due": "2025-04-20",
+          "value": 130,
+          "payable": 1,
+          "auto_charge": 1,
+          "has_details": 0
+        }
+      ],
+    },
+    {
+      "label": "12 Month Plan",
+      "description": "Pay over 12 months",
+      "scheduled_payments": [
+        {
+          "due": "2024-11-20",
+          "value": 100,
+          "payable": 1,
+          "auto_charge": 1,
+          "has_details": 0
+        },
+        {
+          "due": "2024-12-20",
+          "value": 50,
+          "payable": 1,
+          "auto_charge": 1,
+          "has_details": 0
+        },
+        {
+          "due": "2025-01-20",
+          "value": 50,
+          "payable": 1,
+          "auto_charge": 1,
+          "has_details": 0
+        },
+        {
+          "due": "2025-02-20",
+          "value": 50,
+          "payable": 1,
+          "auto_charge": 1,
+          "has_details": 0
+        },
+        {
+          "due": "2025-03-20",
+          "value": 50,
+          "payable": 1,
+          "auto_charge": 1,
+          "has_details": 0
+        },
+        {
+          "due": "2025-04-20",
+          "value": 50,
+          "payable": 1,
+          "auto_charge": 1,
+          "has_details": 0
+        },
+        {
+          "due": "2025-05-20",
+          "value": 50,
+          "payable": 1,
+          "auto_charge": 1,
+          "has_details": 0
+        },
+        {
+          "due": "2025-06-20",
+          "value": 50,
+          "payable": 1,
+          "auto_charge": 1,
+          "has_details": 0
+        },
+        {
+          "due": "2025-07-20",
+          "value": 50,
+          "payable": 1,
+          "auto_charge": 1,
+          "has_details": 0
+        },
+        {
+          "due": "2025-08-20",
+          "value": 50,
+          "payable": 1,
+          "auto_charge": 1,
+          "has_details": 0
+        },
+        {
+          "due": "2025-09-20",
+          "value": 50,
+          "payable": 1,
+          "auto_charge": 1,
+          "has_details": 0
+        },
+        {
+          "due": "2025-10-20",
+          "value": 50,
+          "payable": 1,
+          "auto_charge": 1,
+          "has_details": 0
+        },
+      ]
+    }
+  ]
+}
+
+document.querySelector('code').innerText = `
+POST ${url}
+${JSON.stringify(json, null, 2)}
+`;
   document.querySelector('.checkout button').addEventListener('click', async () => {
-    const { url, body } = buildUrl();
+    // const { url, body } = buildUrl();
     const { checkout_url } = await (await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(body)
+      // body: JSON.stringify(body)
+      body: JSON.stringify(json)
     })).json();
-    window.location.href = checkout_url;
+    document.querySelector('#view-checkout').href = checkout_url;
+    document.querySelector('#view-checkout').innerText = checkout_url;
   });
 </script>
 </html>
