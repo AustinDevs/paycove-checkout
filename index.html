@@ -113,7 +113,6 @@
 
 const json = {
   "order_id": 210,
-  "key": "wc_order_FLOkR37JNL1Pw",
   "line_items": [
     {
       "name": "Leather-Clad Leisure Chair",
@@ -141,7 +140,7 @@ const json = {
     { "label": "Tax", "amount": null, "percent": 10 },
     { "label": "Shipping", "amount": 23, "percent": null }
   ],
-  "success_url": `${window.location.origin}/${window.location.hostname.includes('austindevs') ? 'paycove-checkout/' : ''}thanks.html`,
+  "success_url": `${window.location.origin}/${window.location.hostname.includes('austindevs') ? 'paycove-checkout/' : ''}thanks.html?key=123`,
   "cancel_url": `${window.location.origin}/${window.location.hostname.includes('austindevs') ? 'paycove-checkout/' : ''}`,
   "failure_url": `${window.location.origin}/${window.location.hostname.includes('austindevs') ? 'paycove-checkout/' : ''}`,
   "payment_options": [
