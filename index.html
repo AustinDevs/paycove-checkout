@@ -63,6 +63,8 @@
     </div>
   </div>
 </body>
+<!-- luxon -->
+<script src="https://moment.github.io/luxon/global/luxon.js"></script>
 <script>
   // const buildUrl = () => {
   //   const name = document.getElementById('full-name').value;
@@ -149,7 +151,7 @@ const json = {
       "description": "Pay in full now",
       "scheduled_payments": [
         {
-          "due": "2024-11-20",
+          "due": luxon.DateTime.now().toISODate(),
           "value": 650.00,
           "payable": 1,
           "auto_charge": 1,
@@ -162,42 +164,42 @@ const json = {
       "description": "Pay over 6 months",
       "scheduled_payments": [
         {
-          "due": "2024-11-20",
+          "due": luxon.DateTime.now().toISODate(),
           "value": 100,
           "payable": 1,
           "auto_charge": 1,
           "has_details": 0
         },
         {
-          "due": "2024-12-20",
+          "due": luxon.DateTime.now().plus({ week: 1 }).toISODate(),
           "value": 130,
           "payable": 1,
           "auto_charge": 1,
           "has_details": 0
         },
         {
-          "due": "2025-01-20",
+          "due": luxon.DateTime.now().plus({ week: 2 }).toISODate(),
           "value": 130,
           "payable": 1,
           "auto_charge": 1,
           "has_details": 0
         },
         {
-          "due": "2025-02-20",
+          "due": luxon.DateTime.now().plus({ week: 3 }).toISODate(),
           "value": 130,
           "payable": 1,
           "auto_charge": 1,
           "has_details": 0
         },
         {
-          "due": "2025-03-20",
+          "due": luxon.DateTime.now().plus({ week: 4 }).toISODate(),
           "value": 130,
           "payable": 1,
           "auto_charge": 1,
           "has_details": 0
         },
         {
-          "due": "2025-04-20",
+          "due": luxon.DateTime.now().plus({ week: 5 }).toISODate(),
           "value": 130,
           "payable": 1,
           "auto_charge": 1,
@@ -210,84 +212,84 @@ const json = {
       "description": "Pay over 12 months",
       "scheduled_payments": [
         {
-          "due": "2024-11-20",
+          "due": luxon.DateTime.now().toISODate(),
           "value": 100,
           "payable": 1,
           "auto_charge": 1,
           "has_details": 0
         },
         {
-          "due": "2024-12-20",
+          "due": luxon.DateTime.now().plus({ week: 1 }).toISODate(),
           "value": 50,
           "payable": 1,
           "auto_charge": 1,
           "has_details": 0
         },
         {
-          "due": "2025-01-20",
+          "due": luxon.DateTime.now().plus({ week: 2 }).toISODate(),
           "value": 50,
           "payable": 1,
           "auto_charge": 1,
           "has_details": 0
         },
         {
-          "due": "2025-02-20",
+          "due": luxon.DateTime.now().plus({ week: 3 }).toISODate(),
           "value": 50,
           "payable": 1,
           "auto_charge": 1,
           "has_details": 0
         },
         {
-          "due": "2025-03-20",
+          "due": luxon.DateTime.now().plus({ week: 4 }).toISODate(),
           "value": 50,
           "payable": 1,
           "auto_charge": 1,
           "has_details": 0
         },
         {
-          "due": "2025-04-20",
+          "due": luxon.DateTime.now().plus({ week: 5 }).toISODate(),
           "value": 50,
           "payable": 1,
           "auto_charge": 1,
           "has_details": 0
         },
         {
-          "due": "2025-05-20",
+          "due": luxon.DateTime.now().plus({ week: 6 }).toISODate(),
           "value": 50,
           "payable": 1,
           "auto_charge": 1,
           "has_details": 0
         },
         {
-          "due": "2025-06-20",
+          "due": luxon.DateTime.now().plus({ week: 7 }).toISODate(),
           "value": 50,
           "payable": 1,
           "auto_charge": 1,
           "has_details": 0
         },
         {
-          "due": "2025-07-20",
+          "due": luxon.DateTime.now().plus({ week: 8 }).toISODate(),
           "value": 50,
           "payable": 1,
           "auto_charge": 1,
           "has_details": 0
         },
         {
-          "due": "2025-08-20",
+          "due": luxon.DateTime.now().plus({ week: 9 }).toISODate(),
           "value": 50,
           "payable": 1,
           "auto_charge": 1,
           "has_details": 0
         },
         {
-          "due": "2025-09-20",
+          "due": luxon.DateTime.now().plus({ week: 10 }).toISODate(),
           "value": 50,
           "payable": 1,
           "auto_charge": 1,
           "has_details": 0
         },
         {
-          "due": "2025-10-20",
+          "due": luxon.DateTime.now().plus({ week: 11 }).toISODate(),
           "value": 50,
           "payable": 1,
           "auto_charge": 1,
